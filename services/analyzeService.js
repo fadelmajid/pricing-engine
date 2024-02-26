@@ -1,4 +1,4 @@
-const { HistoricalPOData } = require("../models");
+const { HistoricalPOData, PriceList } = require("../models");
 
 const analyzeService = {
   getOptimumPrice: async (skuID) => {
@@ -6,8 +6,14 @@ const analyzeService = {
       // Analyze historical data to get insights
       const analysisResults = analyzeHistoricalData(skuID);
 
+      // Fetch existing price list data for the SKU from the database
+      const priceListData = await getPriceListData(skuID);
+
       // Combine analysis results to determine the optimum price
-      const optimumPrice = combineAnalysisResults(analysisResults);
+      const optimumPrice = combineAnalysisResults(
+        analysisResults,
+        priceListData
+      );
 
       return optimumPrice;
     } catch (error) {
@@ -17,32 +23,40 @@ const analyzeService = {
   },
 };
 
+// Function to fetch existing price list data for the SKU from the database
+async function getPriceListData(skuID) {
+  try {
+    // Use Sequelize model to fetch price list data for the specified SKU
+    const priceListData = await PriceList.findOne({ where: { skuID } });
+    return priceListData;
+  } catch (error) {
+    console.error("Error fetching price list data:", error);
+    throw new Error("Error fetching price list data");
+  }
+}
 
 function analyzeHistoricalData(skuID) {
-    try {
-        // Logic for analyzing historical sales data and generating pricing recommendations
-        const historicalData = HistoricalPOData.findAll(
-            {
-                where: {
-                    skuID: skuID
-                }
-            }
-        );
-  
-        // Perform analysis on historicalData and generate pricing recommendations
-        const recommendations = {
-          averagePrice: calculateAveragePrice(historicalData),
-          pricingTrends: analyzePricingTrends(historicalData),
-          customerPreferences: analyzeCustomerPreferences(historicalData),
-        };
-  
-        return recommendations;
-      } catch (error) {
-        console.error("Error analyzing data:", error);
-        throw new Error("Error analyzing data");
-      }
- }
+  try {
+    // Logic for analyzing historical sales data and generating pricing recommendations
+    const historicalData = HistoricalPOData.findAll({
+      where: {
+        skuID: skuID,
+      },
+    });
 
+    // Perform analysis on historicalData and generate pricing recommendations
+    const recommendations = {
+      averagePrice: calculateAveragePrice(historicalData),
+      pricingTrends: analyzePricingTrends(historicalData),
+      customerPreferences: analyzeCustomerPreferences(historicalData),
+    };
+
+    return recommendations;
+  } catch (error) {
+    console.error("Error analyzing data:", error);
+    throw new Error("Error analyzing data");
+  }
+}
 
 // Function to calculate average price
 function calculateAveragePrice(data) {
@@ -72,45 +86,65 @@ function analyzePricingTrends(data) {
   }
 }
 
-// Function to analyze customer preferences
+// Function to analyze customer preferences for each customer
 function analyzeCustomerPreferences(data) {
-  // Here, you can analyze which products are frequently purchased by customers
-  // You can count the occurrences of each SKU in the data to identify popular products
-  const skuCounts = {};
+  const customerPreferences = {};
+
+  // Group sales data by customer ID
   data.forEach((entry) => {
-    if (skuCounts[entry.skuID]) {
-      skuCounts[entry.skuID]++;
-    } else {
-      skuCounts[entry.skuID] = 1;
+    const customerId = entry.customerID;
+    const skuId = entry.skuID;
+
+    // Initialize an empty array for the customer if it doesn't exist
+    if (!customerPreferences[customerId]) {
+      customerPreferences[customerId] = [];
     }
+
+    // Add the SKU to the customer's preferences array
+    customerPreferences[customerId].push(skuId);
   });
 
-  // Sort SKU counts in descending order to find the most popular products
-  const sortedSkuCounts = Object.entries(skuCounts).sort((a, b) => b[1] - a[1]);
-  const topProducts = sortedSkuCounts.slice(0, 5); // Get the top 5 most frequently purchased products
-
-  return topProducts;
+  return customerPreferences;
 }
 
 // Function to combine analysis results and determine optimum price
-function combineAnalysisResults(analysisResults) {
+function combineAnalysisResults(analysisResults, existingPriceListData) {
   // You can implement your own logic here to determine the optimum price
   // For example, you might consider factors like average price, pricing trends, customer preferences, etc.
   // This is a simplified example, adjust as per your specific requirements
   const { averagePrice, pricingTrends, customerPreferences } = analysisResults;
 
-  // Calculate optimum price based on the analysis results
-  let optimumPrice = averagePrice;
+  // Consider existing price list data
+  const existingPrice = existingPriceListData ? existingPriceListData.pricePerUnit : null;
 
-  // Consider pricing trends and adjust the optimum price accordingly
+  // Calculate optimum price based on the analysis results and existing price list data
+  let optimumPrice = averagePrice; // Default to average price if no other factors apply
+
+  // Adjust the optimum price based on pricing trends
   if (pricingTrends === "Prices are increasing") {
     optimumPrice *= 1.1; // Increase price by 10% if prices are increasing
   } else if (pricingTrends === "Prices are decreasing") {
     optimumPrice *= 0.9; // Decrease price by 10% if prices are decreasing
   }
 
-  // Consider customer preferences and adjust the optimum price accordingly
-  // For example, you might adjust the price based on the popularity of certain products
+  // Adjust the optimum price based on individual customer preferences
+  if (customerPreferences) {
+    const customerPreferenceCount = Object.keys(customerPreferences).length;
+    // Adjust the price based on the number of preferred products per customer
+    if (customerPreferenceCount > 0) {
+      const preferenceFactor = 1 + (customerPreferenceCount / 100); // Adjust based on the number of customers with preferences
+      optimumPrice *= preferenceFactor;
+    }
+  }
+
+  // Compare with existing price list data and adjust if necessary
+  if (existingPrice !== null) {
+    // Adjust price based on competitive pricing or other factors
+    if (optimumPrice < existingPrice) {
+      optimumPrice = existingPrice; // Set optimum price to existing price if it's lower
+    }
+    // You can implement other comparison logic here if needed
+  }
 
   return optimumPrice;
 }
