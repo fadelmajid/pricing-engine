@@ -1,10 +1,10 @@
 const { HistoricalPOData, Pricelist } = require("../models");
 
 const analyzeService = {
-  getOptimumPrice: async (skuID) => {
+  getOptimumPrice: async (skuID, customerID) => {
     try {
       // Analyze historical data to get insights
-      const analysisResults = await analyzeHistoricalData(skuID);
+      const analysisResults = await analyzeHistoricalData(skuID, customerID);
 
       // Fetch existing price list data for the SKU from the database
       const priceListData = await getPriceListData(skuID);
@@ -15,7 +15,7 @@ const analyzeService = {
         priceListData
       );
 
-      return optimumPrice;
+      return Math.ceil(optimumPrice);
     } catch (error) {
       console.error("Error getting optimum price:", error);
       throw new Error("Error getting optimum price");
@@ -27,7 +27,20 @@ const analyzeService = {
 async function getPriceListData(skuID) {
   try {
     // Use Sequelize model to fetch price list data for the specified SKU
-    const priceListData = await Pricelist.findAll({ where: { skuID } });
+    // Since we have a lot of supplier and different price
+    // For the sake of simplicity, 
+    // let's assume we only consider SKU from the supplier that has most available stock & lowest price
+    // using order query in SQL queries
+    // In the future, we can discuss how we want to prioritize the pricelist and adjust the algorithm
+    const priceListData = await Pricelist.findOne({
+      where: {
+        skuID,
+      },
+      order: [
+        ["stockAvailable", "DESC"],
+        ["pricePerUnit", "ASC"]
+      ],
+    });
     return priceListData;
   } catch (error) {
     console.error("Error fetching price list data:", error);
@@ -35,16 +48,22 @@ async function getPriceListData(skuID) {
   }
 }
 
-async function analyzeHistoricalData(skuID) {
+async function analyzeHistoricalData(skuID, customerID) {
   try {
+    let query = {
+        skuID: skuID
+    }
+
+    // If this is a registered customer = has customerID, then we can calculate the based on their previous trx
+    // if not, then we can just use regular price
+    if(customerID) {
+        query.customerID = customerID
+    }
+
     // Logic for analyzing historical sales data and generating pricing recommendations
     const historicalData = await HistoricalPOData.findAll({
-      where: {
-        skuID: skuID,
-      }
+      where: query,
     });
-
-    console.log(historicalData)
 
     // Perform analysis on historicalData and generate pricing recommendations
     const recommendations = {
@@ -62,10 +81,11 @@ async function analyzeHistoricalData(skuID) {
 
 // Function to calculate average price
 function calculateAveragePrice(data) {
-  const totalPrices = data.reduce(
-    (sum, entry) => sum + entry.unitSellingPrice,
-    0
-  );
+
+  const totalPrices = data.reduce((accumulator, object) => {
+    return accumulator + Math.ceil(object.unitSellingPrice);
+  }, 0);
+
   const averagePrice = totalPrices / data.length;
   return averagePrice;
 }
@@ -117,7 +137,9 @@ function combineAnalysisResults(analysisResults, existingPriceListData) {
   const { averagePrice, pricingTrends, customerPreferences } = analysisResults;
 
   // Consider existing price list data
-  const existingPrice = existingPriceListData ? existingPriceListData.pricePerUnit : null;
+  const existingPrice = existingPriceListData
+    ? existingPriceListData.pricePerUnit
+    : null;
 
   // Calculate optimum price based on the analysis results and existing price list data
   let optimumPrice = averagePrice; // Default to average price if no other factors apply
@@ -134,7 +156,7 @@ function combineAnalysisResults(analysisResults, existingPriceListData) {
     const customerPreferenceCount = Object.keys(customerPreferences).length;
     // Adjust the price based on the number of preferred products per customer
     if (customerPreferenceCount > 0) {
-      const preferenceFactor = 1 + (customerPreferenceCount / 100); // Adjust based on the number of customers with preferences
+      const preferenceFactor = 1 + customerPreferenceCount / 100; // Adjust based on the number of customers with preferences
       optimumPrice *= preferenceFactor;
     }
   }
