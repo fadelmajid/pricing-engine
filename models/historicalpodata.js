@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class HistoricalPOData extends Model {
     /**
@@ -13,16 +11,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  HistoricalPOData.init({
-    customerID: DataTypes.STRING,
-    orderDate: DataTypes.DATE,
-    skuID: DataTypes.STRING,
-    orderQuantity: DataTypes.INTEGER,
-    orderUnit: DataTypes.STRING,
-    unitSellingPrice: DataTypes.DECIMAL
-  }, {
-    sequelize,
-    modelName: 'HistoricalPOData',
-  });
+  HistoricalPOData.init(
+    {
+      customerID: DataTypes.STRING,
+      orderDate: DataTypes.DATE,
+      skuID: DataTypes.STRING,
+      orderQuantity: DataTypes.INTEGER,
+      orderUnit: DataTypes.STRING,
+      unitSellingPrice: DataTypes.DECIMAL,
+    },
+    {
+      sequelize,
+      modelName: "HistoricalPOData",
+    }
+  );
   return HistoricalPOData;
 };

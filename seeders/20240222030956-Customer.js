@@ -2,24 +2,18 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.bulkInsert('Customers', [
+      { customerID: 'M1-ABDI-11', address: 'Taman Sari, Kec. Setu', city: 'Bekasi', state: 'Jawa Barat' },
+      { customerID: 'M1-PUMS-11', address: 'Gunung Sindur', city: 'Bogor', state: 'Jawa Barat' },
+      { customerID: 'M1-STQI-11', address: 'Kel. Rorotan- Cilincing', city: 'Jakarta Utara', state: 'DKI Jakarta' },
+      { customerID: 'M1-SUGP-11', address: 'Gn. Putri Kec. Gn. Putri', city: 'Bekasi', state: 'Jawa Barat' },
+      { customerID: 'M1-SURA-11', address: 'Padurenan, Mustika Jaya', city: 'Bekasi', state: 'Jawa Barat' },
+      // Add more data as needed
+    ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+  down: async (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Customers', null, {});
   }
 };

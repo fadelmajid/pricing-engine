@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class RFQCustomer extends Model {
     /**
@@ -13,14 +11,17 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  RFQCustomer.init({
-    customerID: DataTypes.STRING,
-    orderLinesSKU: DataTypes.STRING,
-    orderLinesQuantity: DataTypes.INTEGER,
-    orderLinesUnitOfMeasure: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'RFQCustomer',
-  });
+  RFQCustomer.init(
+    {
+      customerID: DataTypes.STRING,
+      orderLinesSKU: DataTypes.STRING,
+      orderLinesQuantity: DataTypes.INTEGER,
+      orderLinesUnitOfMeasure: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "RFQCustomer",
+    }
+  );
   return RFQCustomer;
 };
