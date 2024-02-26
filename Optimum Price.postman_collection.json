@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "0d70de9e-b1ab-47b0-9d72-031bd53218ff",
+		"name": "Optimum Price",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5544844"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic SVJJUy1jZDMwZTIzYi0wM2Q2LTQ2Y2QtOTk3Yy05NWQwZGFjMzJlNDc6",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Optimum Price",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/analyze?skuId=SIK-060060-IBB&customerId=M1-PUMS-11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"analyze"
+					],
+					"query": [
+						{
+							"key": "skuId",
+							"value": "SIK-060060-IBB"
+						},
+						{
+							"key": "customerId",
+							"value": "M1-PUMS-11"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Response Optimum Price",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/analyze?skuId=SIK-060060-IBB&customerId=M1-PUMS-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"analyze"
+							],
+							"query": [
+								{
+									"key": "skuId",
+									"value": "SIK-060060-IBB"
+								},
+								{
+									"key": "customerId",
+									"value": "M1-PUMS-11"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"17-EJxne5pgE7+t7NY42KqQf9nJpt4\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 26 Feb 2024 15:21:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"optimumPrice\": 529691\n}"
+				}
+			]
+		}
+	]
+}
