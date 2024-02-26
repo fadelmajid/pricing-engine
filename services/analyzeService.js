@@ -1,10 +1,10 @@
-const { HistoricalPOData, PriceList } = require("../models");
+const { HistoricalPOData, Pricelist } = require("../models");
 
 const analyzeService = {
   getOptimumPrice: async (skuID) => {
     try {
       // Analyze historical data to get insights
-      const analysisResults = analyzeHistoricalData(skuID);
+      const analysisResults = await analyzeHistoricalData(skuID);
 
       // Fetch existing price list data for the SKU from the database
       const priceListData = await getPriceListData(skuID);
@@ -27,7 +27,7 @@ const analyzeService = {
 async function getPriceListData(skuID) {
   try {
     // Use Sequelize model to fetch price list data for the specified SKU
-    const priceListData = await PriceList.findOne({ where: { skuID } });
+    const priceListData = await Pricelist.findAll({ where: { skuID } });
     return priceListData;
   } catch (error) {
     console.error("Error fetching price list data:", error);
@@ -35,14 +35,16 @@ async function getPriceListData(skuID) {
   }
 }
 
-function analyzeHistoricalData(skuID) {
+async function analyzeHistoricalData(skuID) {
   try {
     // Logic for analyzing historical sales data and generating pricing recommendations
-    const historicalData = HistoricalPOData.findAll({
+    const historicalData = await HistoricalPOData.findAll({
       where: {
         skuID: skuID,
-      },
+      }
     });
+
+    console.log(historicalData)
 
     // Perform analysis on historicalData and generate pricing recommendations
     const recommendations = {

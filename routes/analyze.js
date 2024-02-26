@@ -3,7 +3,7 @@ const router = express.Router();
 const analyzeService = require('../services/analyzeService');
 
 // Analyze price endpoint
-router.post('/analyze/:skuID', async (req, res) => {
+router.post('/:skuID', async (req, res) => {
     try {
         const { skuID } = req.params;
         const optimumPrice = await analyzeService.getOptimumPrice(skuID);
