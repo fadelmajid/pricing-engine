@@ -6,7 +6,7 @@ module.exports = {
     return queryInterface.bulkInsert("HistoricalPOData", [
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/12/2022",
+        orderDate: "2022-12-22",
         skuID: "SIK-040040-IBB",
         orderQuantity: 142,
         orderUnit: "Batang",
@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/12/2022",
+        orderDate: "2022-12-22",
         skuID: "SIK-060060-IBB",
         orderQuantity: 112,
         orderUnit: "Batang",
@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/12/2022",
+        orderDate: "2022-12-22",
         skuID: "SIK-070070-IBB",
         orderQuantity: 24,
         orderUnit: "Batang",
@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/12/2022",
+        orderDate: "2022-12-22",
         skuID: "SIK-080080-IBB",
         orderQuantity: 24,
         orderUnit: "Batang",
@@ -38,8 +38,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/12/2022",
-        sku_code: "SIK-9090",
+        orderDate: "2022-12-22",
         skuID: "SIK-090090-KS",
         orderQuantity: 52,
         orderUnit: "Batang",
@@ -47,7 +46,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/12/2022",
+        orderDate: "2022-12-22",
         skuID: "SIK-100100-IBB",
         orderQuantity: 90,
         orderUnit: "Batang",
@@ -55,7 +54,7 @@ module.exports = {
       },
       {
         customerID: "M1-STQI-11",
-        orderDate: "17/01/2023",
+        orderDate: "2023-02-17",
         skuID: "PLT-BRDS0230",
         orderQuantity: 100,
         orderUnit: "Lembar",
@@ -63,7 +62,7 @@ module.exports = {
       },
       {
         customerID: "M1-STQI-11",
-        orderDate: "17/01/2023",
+        orderDate: "2023-02-17",
         skuID: "PLT-SPHC0155",
         orderQuantity: 200,
         orderUnit: "Lembar",
@@ -71,7 +70,7 @@ module.exports = {
       },
       {
         customerID: "M1-STQI-11",
-        orderDate: "17/01/2023",
+        orderDate: "2023-02-17",
         skuID: "PLT-SPHC0180",
         orderQuantity: 50,
         orderUnit: "Lembar",
@@ -79,7 +78,7 @@ module.exports = {
       },
       {
         customerID: "M1-STQI-11",
-        orderDate: "19/01/2023",
+        orderDate: "2023-01-19",
         skuID: "PLT-SPHC0026",
         orderQuantity: 10,
         orderUnit: "Lembar",
@@ -87,7 +86,7 @@ module.exports = {
       },
       {
         customerID: "M1-STQI-11",
-        orderDate: "19/01/2023",
+        orderDate: "2023-01-19",
         skuID: "PLT-SPHC0280",
         orderQuantity: 20,
         orderUnit: "Lembar",
@@ -95,7 +94,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PIP-SCH404",
         orderQuantity: 3,
         orderUnit: "Batang",
@@ -103,7 +102,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PIP-SCH4060",
         orderQuantity: 3,
         orderUnit: "Batang",
@@ -111,7 +110,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PIP-SCH4080",
         orderQuantity: 2,
         orderUnit: "Batang",
@@ -119,7 +118,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC0400",
         orderQuantity: 3,
         orderUnit: "Lembar",
@@ -127,7 +126,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC0500",
         orderQuantity: 5,
         orderUnit: "Lembar",
@@ -135,7 +134,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC0600",
         orderQuantity: 4,
         orderUnit: "Lembar",
@@ -143,7 +142,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC1000",
         orderQuantity: 1,
         orderUnit: "Lembar",
@@ -151,7 +150,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC1200-GG",
         orderQuantity: 11,
         orderUnit: "Lembar",
@@ -159,7 +158,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC1200-GG",
         orderQuantity: 14,
         orderUnit: "Lembar",
@@ -167,7 +166,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-040040-IBB",
         orderQuantity: 51,
         orderUnit: "Batang",
@@ -175,7 +174,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-050050-IBB",
         orderQuantity: 72,
         orderUnit: "Batang",
@@ -183,7 +182,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-060060-IBB",
         orderQuantity: 8,
         orderUnit: "Batang",
@@ -191,7 +190,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-070070-IBB",
         orderQuantity: 8,
         orderUnit: "Batang",
@@ -199,7 +198,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-080080-IBB",
         orderQuantity: 10,
         orderUnit: "Batang",
@@ -207,7 +206,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-090090-KS",
         orderQuantity: 17,
         orderUnit: "Batang",
@@ -215,7 +214,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-100100-IBB",
         orderQuantity: 1,
         orderUnit: "Batang",
@@ -223,7 +222,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-100100-IBB",
         orderQuantity: 18,
         orderUnit: "Batang",
@@ -231,7 +230,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-120120-IBB",
         orderQuantity: 5,
         orderUnit: "Batang",
@@ -239,7 +238,7 @@ module.exports = {
       },
       {
         customerID: "M1-PUMS-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "SIK-120120-IBB",
         orderQuantity: 20,
         orderUnit: "Batang",
@@ -247,7 +246,7 @@ module.exports = {
       },
       {
         customerID: "M1-STQI-11",
-        orderDate: "20/01/2023",
+        orderDate: "2023-01-23",
         skuID: "PLT-SPHC0280",
         orderQuantity: 20,
         orderUnit: "Lembar",
@@ -255,7 +254,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-040040-IBB",
         orderQuantity: 30,
         orderUnit: "Batang",
@@ -263,7 +262,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-050050-IBB",
         orderQuantity: 60,
         orderUnit: "Batang",
@@ -271,7 +270,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-060060-IBB",
         orderQuantity: 50,
         orderUnit: "Batang",
@@ -279,7 +278,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-070070-IBB",
         orderQuantity: 120,
         orderUnit: "Batang",
@@ -287,7 +286,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-080080-IBB",
         orderQuantity: 15,
         orderUnit: "Batang",
@@ -295,7 +294,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-100100-IBB",
         orderQuantity: 30,
         orderUnit: "Batang",
@@ -303,7 +302,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "SIK-120120-IBB",
         orderQuantity: 11,
         orderUnit: "Batang",
@@ -311,7 +310,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "27/01/2023",
+        orderDate: "2023-01-27",
         skuID: "WFL-300-GG",
         orderQuantity: 8,
         orderUnit: "Batang",
@@ -359,7 +358,7 @@ module.exports = {
       },
       {
         customerID: "M1-ABDI-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "UNP-120",
         orderQuantity: 6,
         orderUnit: "Batang",
@@ -367,7 +366,7 @@ module.exports = {
       },
       {
         customerID: "M1-ABDI-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "UNP-200",
         orderQuantity: 10,
         orderUnit: "Batang",
@@ -375,7 +374,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "PLT-KPL0100",
         orderQuantity: 2,
         orderUnit: "Batang",
@@ -383,7 +382,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "SIK-040040-IBB",
         orderQuantity: 100,
         orderUnit: "Batang",
@@ -391,7 +390,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "SIK-050050-IBB",
         orderQuantity: 30,
         orderUnit: "Batang",
@@ -399,7 +398,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "SIK-120120-IBB",
         orderQuantity: 3,
         orderUnit: "Batang",
@@ -407,7 +406,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "06/02/2023",
+        orderDate: "2023-02-06",
         skuID: "SIK-120120-IBB",
         orderQuantity: 22,
         orderUnit: "Batang",
@@ -415,7 +414,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "23/02/2023",
+        orderDate: "2023-02-23",
         skuID: "PLT-KPL0100",
         orderQuantity: 2,
         orderUnit: "Lembar",
@@ -423,7 +422,7 @@ module.exports = {
       },
       {
         customerID: "M1-SUGP-11",
-        orderDate: "23/02/2023",
+        orderDate: "2023-02-23",
         skuID: "SIK-050050-IBB",
         orderQuantity: 30,
         orderUnit: "Batang",

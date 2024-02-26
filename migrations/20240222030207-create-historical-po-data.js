@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("HistoricalPOData", {
       id: {
-        allowNull: false,
+        allowNull: true,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       orderDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       skuID: {
         type: Sequelize.STRING,
@@ -28,12 +28,14 @@ module.exports = {
         type: Sequelize.DECIMAL,
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
     });
   },
