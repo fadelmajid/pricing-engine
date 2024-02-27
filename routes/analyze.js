@@ -6,6 +6,10 @@ const analyzeService = require('../services/analyzeService');
 router.post('/', async (req, res) => {
     try {
         const { skuId, customerId } = req.query;
+        if (!skuId) {
+            res.status(400).json({ message: 'skuID is required' });
+            return;
+        }
         const optimumPrice = await analyzeService.getOptimumPrice(skuId, customerId);
         res.json({ optimumPrice });
     } catch (error) {
